@@ -1,0 +1,55 @@
+[
+  {
+    "_class": "com.example.cinema.movie.Movie",
+    "id": 1,
+    "omdbId": "tt0232500",
+    "title": "The Fast and the Furious",
+    "pricing": {
+      "adults": 20,
+      "students": 15,
+      "children": 10
+    },
+    "duration": "PT1H46M",
+    "rating": {
+      "avgScore": 4.5,
+      "reviews": [
+        {
+          "userId": 1,
+          "score": 4.5
+        }
+      ]
+    }
+  },
+  {
+    "_class": "com.example.cinema.movie.Movie",
+    "id": 2,
+    "omdbId": "tt0322259",
+    "title": "2 Fast 2 Furious",
+    "pricing": {
+      "adults": 20,
+      "students": 15,
+      "children": 10
+    },
+    "duration": "PT1H47M",
+    "rating": {
+      "avgScore": 0.0,
+      "reviews": []
+    }
+  },
+  {
+    "_class": "com.example.cinema.movie.Movie",
+    "id": 3,
+    "omdbId": "tt0463985",
+    "title": "The Fast and the Furious: Tokyo Drift",
+    "pricing": {
+      "adults": 20,
+      "students": 15,
+      "children": 10
+    },
+    "duration": "PT1H44M",
+    "rating": {
+      "avgScore": 0.0,
+      "reviews": []
+    }
+  }
+]
