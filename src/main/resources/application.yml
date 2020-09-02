@@ -1,3 +1,7 @@
 omdb:
   url: http://www.omdbapi.com
   apiKey: missing
+
+mongock:
+  change-logs-scan-package:
+    - com.example.cinema.migration
