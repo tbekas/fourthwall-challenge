@@ -16,21 +16,17 @@ data class Movie(
         val title: String,
         val pricing: Pricing,
         val duration: Duration,
-        val rating: Rating
+        val rating: Double,
+        val reviews: List<Review>
 )
-
 data class Pricing(
         val adults: BigDecimal,
         val students: BigDecimal,
         val children: BigDecimal
 )
 
-data class Rating(
-        val avgScore: BigDecimal,
-        val reviews: List<Review>
-)
-
 data class Review(
         val userId: Long,
-        val score: BigDecimal
+        val rating: Double,
+        val comment: String?
 )

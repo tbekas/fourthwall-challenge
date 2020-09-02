@@ -10,15 +10,14 @@
       "children": 10
     },
     "duration": "PT1H46M",
-    "rating": {
-      "avgScore": 4.5,
-      "reviews": [
-        {
-          "userId": 1,
-          "score": 4.5
-        }
-      ]
-    }
+    "reviews": [
+      {
+        "userId": 1,
+        "rating": 1.0,
+        "comment": "They went over the speed limit a couple of times"
+      }
+    ],
+    "rating": 1.0
   },
   {
     "_class": "com.example.cinema.movie.Movie",
@@ -31,10 +30,14 @@
       "children": 10
     },
     "duration": "PT1H47M",
-    "rating": {
-      "avgScore": 0.0,
-      "reviews": []
-    }
+    "reviews": [
+      {
+        "userId": 1,
+        "rating": 4.5,
+        "comment": "Great movie"
+      }
+    ],
+    "rating": 4.5
   },
   {
     "_class": "com.example.cinema.movie.Movie",
@@ -47,9 +50,12 @@
       "children": 10
     },
     "duration": "PT1H44M",
-    "rating": {
-      "avgScore": 0.0,
-      "reviews": []
-    }
+    "reviews": [
+      {
+        "userId": 1,
+        "rating": 4.5
+      }
+    ],
+    "rating": 4.5
   }
 ]

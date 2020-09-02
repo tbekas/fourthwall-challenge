@@ -7,24 +7,24 @@ import reactor.core.publisher.Mono
 @RestController
 class MovieController(val movieRepository: MovieRepository) {
 
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movies/{id}")
     fun getMovie(@PathVariable id: Long): Mono<Movie> =
             movieRepository
                     .findById(id)
                     .notFoundIfEmpty()
 
-    @PostMapping("/movie")
+    @PostMapping("/movies")
     fun createMovie(@RequestBody movie: Movie): Mono<Movie> =
             movieRepository.save(movie)
 
-    @PutMapping("/movie/{id}")
+    @PutMapping("/movies/{id}")
     fun putMovie(@PathVariable id: Long, @RequestBody movie: Movie): Mono<Movie> =
             movieRepository
                     .findById(id)
                     .flatMap { movieRepository.save(movie) }
                     .notFoundIfEmpty()
 
-    @DeleteMapping("/movie/{id}")
+    @DeleteMapping("/movies/{id}")
     fun deleteMovie(@PathVariable id: Long): Mono<Void> =
             movieRepository
                     .findById(id)

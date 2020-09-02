@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
+	kotlin("kapt") version "1.3.72"
 }
 
 group = "com.example"
@@ -13,11 +14,16 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
 	mavenCentral()
+	maven("https://dl.bintray.com/arrow-kt/arrow-kt/")
 }
+
+val arrowVersion = "0.10.5"
+val kotestVersion = "4.1.1"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
@@ -25,13 +31,19 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.2")
-
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
+	implementation("io.arrow-kt:arrow-optics:$arrowVersion")
+	implementation("io.arrow-kt:arrow-syntax:$arrowVersion")
+	kapt("io.arrow-kt:arrow-meta:$arrowVersion")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
+	testImplementation("io.kotest:kotest-runner-console-jvm:$kotestVersion")
+	testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
+	testImplementation("io.kotest:kotest-extensions-spring-jvm:$kotestVersion")
 }
 
 tasks.withType<Test> {
