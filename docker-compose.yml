@@ -11,16 +11,11 @@ services:
       SPRING_REDIS_HOST: redis
     depends_on:
       - mongo
-#      - redis
   mongo:
     image: mongo:4.2
     restart: always
     ports:
       - 27017:27017
-#  redis:
-#    image: redis:6.0
-#    restart: always
-#TODO remove mongo-express
   mongo-express:
     image: mongo-express
     restart: always

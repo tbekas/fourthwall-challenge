@@ -21,9 +21,7 @@ class OmdbApi(
     fun getMovieById(id: String): Mono<OmdbMovie> {
         return webClient
                 .get()
-                .uri {it.query("i={id}&apikey={apiKey}")
-                        .build(mapOf("id" to id))
-                }
+                .uri { it.query("i={id}&apikey={apiKey}").build(mapOf("id" to id)) }
                 .retrieve()
                 .bodyToMono(OmdbMovie::class.java)
     }

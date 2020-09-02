@@ -19,6 +19,7 @@ repositories {
 
 val arrowVersion = "0.10.5"
 val kotestVersion = "4.1.1"
+val testcontainersVersion = "1.14.3"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
@@ -34,6 +35,11 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	testImplementation("org.testcontainers:mongodb:$testcontainersVersion")
+	testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
+	testImplementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
+	testImplementation("org.testcontainers:mockserver:$testcontainersVersion")
+	testImplementation("org.mock-server:mockserver-client-java:5.5.4")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
 	testImplementation("io.kotest:kotest-runner-console-jvm:$kotestVersion")

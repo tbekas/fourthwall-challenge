@@ -32,7 +32,7 @@
   {
     "_class": "com.example.cinema.screening.Screening",
     "id": 3,
-    "date": "2020-10-01",
+    "date": "2020-10-02",
     "time": "20:30:00",
     "movie": {
       "id": 1,
@@ -42,36 +42,6 @@
     "room": {
       "id": 2,
       "name": "Hall 2"
-    }
-  },
-  {
-    "_class": "com.example.cinema.screening.Screening",
-    "id": 4,
-    "date": "2020-10-02",
-    "time": "18:30:00",
-    "movie": {
-      "id": 1,
-      "title": "The Fast and the Furious",
-      "duration": "PT1H46M"
-    },
-    "room": {
-      "id": 1,
-      "name": "Hall 1"
-    }
-  },
-  {
-    "_class": "com.example.cinema.screening.Screening",
-    "id": 5,
-    "date": "2020-10-03",
-    "time": "20:30:00",
-    "movie": {
-      "id": 2,
-      "title": "2 Fast 2 Furious",
-      "duration": "PT1H47M"
-    },
-    "room": {
-      "id": 1,
-      "name": "Hall 1"
     }
   }
 ]

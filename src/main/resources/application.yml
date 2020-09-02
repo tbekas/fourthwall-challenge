@@ -1,7 +1,11 @@
 omdb:
   url: http://www.omdbapi.com
-  apiKey: missing
+  apiKey: test-key
 
 mongock:
   change-logs-scan-package:
-    - com.example.cinema.migration
+    - com.example.cinema.db
+
+logging:
+  level:
+    org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG

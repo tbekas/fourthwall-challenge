@@ -38,24 +38,5 @@
       }
     ],
     "rating": 5.0
-  },
-  {
-    "_class": "com.example.cinema.movie.Movie",
-    "id": 3,
-    "omdbId": "tt0463985",
-    "title": "The Fast and the Furious: Tokyo Drift",
-    "pricing": {
-      "adults": 20,
-      "students": 15,
-      "children": 10
-    },
-    "duration": "PT1H44M",
-    "reviews": [
-      {
-        "userId": 1,
-        "rating": 4.5
-      }
-    ],
-    "rating": 4.5
   }
 ]

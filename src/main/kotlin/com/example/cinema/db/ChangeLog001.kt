@@ -1,4 +1,4 @@
-package com.example.cinema.migration
+package com.example.cinema.db
 
 import com.example.cinema.movie.Movie
 import com.example.cinema.screening.Screening
@@ -14,7 +14,7 @@ import org.springframework.core.io.DefaultResourceLoader
 @ChangeLog(order = "001")
 class ChangeLog001 {
 
-    @ChangeSet(order = "001", id = "movies-and-screenings-collections", author = "tomasz.bekas")
+    @ChangeSet(order = "001", id = "collections", author = "tomasz.bekas")
     fun collections(database: MongoDatabase) {
         database.createCollection("movies")
         database.createCollection("screenings")
@@ -23,14 +23,14 @@ class ChangeLog001 {
     }
 
     @ChangeSet(order = "002", id = "movies-data", author = "tomasz.bekas")
-    fun movies(mongockTemplate: MongockTemplate, objectMapperSupplier: () -> ObjectMapper) {
+    fun moviesData(mongockTemplate: MongockTemplate, objectMapperSupplier: () -> ObjectMapper) {
         objectMapperSupplier.invoke()
                 .readValue<List<Movie>>(inputStream("classpath:data/movies.json"))
                 .forEach { mongockTemplate.save(it) }
     }
 
     @ChangeSet(order = "003", id = "screenings-data", author = "tomasz.bekas")
-    fun screenings(mongockTemplate: MongockTemplate, objectMapperSupplier: () -> ObjectMapper) {
+    fun screeningsData(mongockTemplate: MongockTemplate, objectMapperSupplier: () -> ObjectMapper) {
         objectMapperSupplier.invoke()
                 .readValue<List<Screening>>(inputStream("classpath:data/screenings.json"))
                 .forEach { mongockTemplate.save(it) }

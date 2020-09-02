@@ -5,6 +5,7 @@ import com.example.cinema.notFoundIfEmpty
 import org.springframework.data.domain.Range
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.format.annotation.DateTimeFormat.ISO
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -32,6 +33,7 @@ class ScreeningController(
             screeningRepository.findAllByDateBetween(Range.closed(dateFrom, dateTo))
 
     @PostMapping("/screenings")
+    @ResponseStatus(HttpStatus.CREATED)
     fun createScreening(@RequestBody screening: Screening): Mono<Screening> =
             screeningRepository.save(screening)
 

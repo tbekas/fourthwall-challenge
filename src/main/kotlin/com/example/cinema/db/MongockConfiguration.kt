@@ -1,4 +1,4 @@
-package com.example.cinema.migration
+package com.example.cinema.db
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.cloudyrock.spring.v5.EnableMongock

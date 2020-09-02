@@ -1,6 +1,8 @@
 package com.example.cinema.movie
 
+import com.example.cinema.conflictIfOptimisticLockException
 import com.example.cinema.notFoundIfEmpty
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 
@@ -14,6 +16,7 @@ class MovieController(val movieRepository: MovieRepository) {
                     .notFoundIfEmpty()
 
     @PostMapping("/movies")
+    @ResponseStatus(HttpStatus.CREATED)
     fun createMovie(@RequestBody movie: Movie): Mono<Movie> =
             movieRepository.save(movie)
 
@@ -22,7 +25,8 @@ class MovieController(val movieRepository: MovieRepository) {
             movieRepository
                     .findById(id)
                     .notFoundIfEmpty()
-                    .flatMap { movieRepository.save(movie) }
+                    .flatMap { movieRepository.save(movie.copy(it.id)) }
+                    .conflictIfOptimisticLockException()
 
     @DeleteMapping("/movies/{id}")
     fun deleteMovie(@PathVariable id: Long): Mono<Void> =
