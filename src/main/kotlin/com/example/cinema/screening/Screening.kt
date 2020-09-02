@@ -6,7 +6,7 @@ import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalTime
 
-@Document("screening")
+@Document("screenings")
 data class Screening(
         @Id
         val id: Long,

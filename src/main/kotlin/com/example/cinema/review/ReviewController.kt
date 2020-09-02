@@ -1,6 +1,5 @@
 package com.example.cinema.review
 
-import arrow.syntax.collections.prependTo
 import com.example.cinema.movie.Movie
 import com.example.cinema.movie.MovieRepository
 import com.example.cinema.movie.Review
@@ -21,7 +20,7 @@ class ReviewController(val movieRepository: MovieRepository) {
         return movieRepository.findById(movieId)
                 .notFoundIfEmpty()
                 .map { it.copy(
-                        reviews = review.prependTo(it.reviews),
+                        reviews = listOf(review) + it.reviews,
                         rating = calcRating(it.rating, it.reviews.size, review.rating)
                 ) }
                 .flatMap { movieRepository.save(it) }

@@ -21,13 +21,13 @@ class MovieController(val movieRepository: MovieRepository) {
     fun putMovie(@PathVariable id: Long, @RequestBody movie: Movie): Mono<Movie> =
             movieRepository
                     .findById(id)
-                    .flatMap { movieRepository.save(movie) }
                     .notFoundIfEmpty()
+                    .flatMap { movieRepository.save(movie) }
 
     @DeleteMapping("/movies/{id}")
     fun deleteMovie(@PathVariable id: Long): Mono<Void> =
             movieRepository
                     .findById(id)
-                    .flatMap { movieRepository.delete(it) }
                     .notFoundIfEmpty()
+                    .flatMap { movieRepository.delete(it) }
 }
