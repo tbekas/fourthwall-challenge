@@ -1,6 +1,6 @@
 package com.example.cinema.review
 
-import com.example.cinema.conflictIfOptimisticLockException
+import com.example.cinema.conflictIfConcurrentUpdate
 import com.example.cinema.movie.Movie
 import com.example.cinema.movie.MovieRepository
 import com.example.cinema.movie.Review
@@ -23,7 +23,7 @@ class ReviewController(val movieRepository: MovieRepository) {
                 ) }
                 .flatMap { movieRepository.save(it) }
                 .retry(3)
-                .conflictIfOptimisticLockException()
+                .conflictIfConcurrentUpdate()
     }
 
     fun calcRating(movieRating: Double, reviewCount: Int, reviewRating: Double) =

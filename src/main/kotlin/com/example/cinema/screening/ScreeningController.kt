@@ -1,5 +1,6 @@
 package com.example.cinema.screening
 
+import com.example.cinema.conflictIfConcurrentUpdate
 import com.example.cinema.movie.MovieRepository
 import com.example.cinema.notFoundIfEmpty
 import org.springframework.data.domain.Range
@@ -20,7 +21,8 @@ class ScreeningController(
 
     @GetMapping("/movies/{id}/screenings")
     fun findScreeningsByMovieId(@PathVariable("id") movieId: Long): Flux<Screening> =
-            movieRepository.findById(movieId)
+            movieRepository
+                    .findById(movieId)
                     .notFoundIfEmpty()
                     .toFlux()
                     .flatMap { screeningRepository.findAllByMovieId(movieId) }
@@ -35,10 +37,16 @@ class ScreeningController(
     @PostMapping("/screenings")
     @ResponseStatus(HttpStatus.CREATED)
     fun createScreening(@RequestBody screening: Screening): Mono<Screening> =
-            screeningRepository.save(screening)
+            screeningRepository
+                    .save(screening)
+                    .conflictIfConcurrentUpdate()
 
     @DeleteMapping("/screenings/{id}")
     fun deleteScreening(@PathVariable id: Long): Mono<Void> =
-            screeningRepository.deleteById(id)
+            screeningRepository
+                    .findById(id)
+                    .notFoundIfEmpty()
+                    .flatMap { screeningRepository.delete(it) }
+                    .conflictIfConcurrentUpdate()
 
 }

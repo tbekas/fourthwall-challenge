@@ -1,6 +1,6 @@
 package com.example.cinema.movie
 
-import com.example.cinema.conflictIfOptimisticLockException
+import com.example.cinema.conflictIfConcurrentUpdate
 import com.example.cinema.notFoundIfEmpty
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -18,15 +18,17 @@ class MovieController(val movieRepository: MovieRepository) {
     @PostMapping("/movies")
     @ResponseStatus(HttpStatus.CREATED)
     fun createMovie(@RequestBody movie: Movie): Mono<Movie> =
-            movieRepository.save(movie)
+            movieRepository
+                    .save(movie)
+                    .conflictIfConcurrentUpdate()
 
     @PutMapping("/movies/{id}")
     fun putMovie(@PathVariable id: Long, @RequestBody movie: Movie): Mono<Movie> =
             movieRepository
                     .findById(id)
                     .notFoundIfEmpty()
-                    .flatMap { movieRepository.save(movie.copy(it.id)) }
-                    .conflictIfOptimisticLockException()
+                    .flatMap { movieRepository.save(movie.copy(id = it.id)) }
+                    .conflictIfConcurrentUpdate()
 
     @DeleteMapping("/movies/{id}")
     fun deleteMovie(@PathVariable id: Long): Mono<Void> =
@@ -34,4 +36,5 @@ class MovieController(val movieRepository: MovieRepository) {
                     .findById(id)
                     .notFoundIfEmpty()
                     .flatMap { movieRepository.delete(it) }
+                    .conflictIfConcurrentUpdate()
 }

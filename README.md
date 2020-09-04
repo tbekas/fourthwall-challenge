@@ -28,5 +28,6 @@ Auto-generated OpenAPI specification:
 
 * There is no authentication to the API
 * Values coming from OMDb API are not cached
+* Entity IDs are client-generated
 * Some inputs have missing validation, i.e. user can leave rating of any decimal value
 * Tests are very basic. There are no tests of edge-cases or complex scenarios.
