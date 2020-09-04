@@ -4,10 +4,19 @@ import com.example.cinema.conflictIfConcurrentUpdate
 import com.example.cinema.notFoundIfEmpty
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
 class MovieController(val movieRepository: MovieRepository) {
+
+    @GetMapping("/movies")
+    fun findMovies(@RequestParam("offset", defaultValue = "0") offset: Long,
+                   @RequestParam("limit", defaultValue = "20") limit: Long): Flux<Movie> =
+            movieRepository.findAll()
+                    .skip(offset * limit)
+                    .take(limit)
+
 
     @GetMapping("/movies/{id}")
     fun getMovie(@PathVariable id: Long): Mono<Movie> =

@@ -4,11 +4,12 @@
 
 * [Docker](https://docs.docker.com/get-docker/)
 * [Docker compose](https://docs.docker.com/compose/install/)
+  (on desktops Mac & Windows it's included with the Docker bundle)
 * [OMDb API key](http://www.omdbapi.com/apikey.aspx)
 
 ## Running the app
 
-Supply the OMDb API key with environment variable, and run the app with `docker-compose`:
+Supply the OMDb API key as an environment variable, and run the app with `docker-compose`:
 ```
 $ OMDB_APIKEY=xxx docker-compose up
 ```
@@ -27,7 +28,7 @@ Auto-generated OpenAPI specification:
 ## Simplifications
 
 * There is no authentication to the API
-* Values coming from OMDb API are not cached
+* There is no caching on values coming from OMDb API
 * Entity IDs are client-generated
 * Some inputs have missing validation, i.e. user can leave rating of any decimal value
 * Tests are very basic. There are no tests of edge-cases or complex scenarios.
